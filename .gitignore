@@ -1,0 +1,4 @@
+/.cache
+/libmb_rt.a
+/compile_commands.json
+/*.tmp
