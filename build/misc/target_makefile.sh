@@ -16,7 +16,7 @@ all: \$(NAME)
 
 \$(NAME): %s
 	rm -f \$@ \$@.tmp
-	\$(AR) cr \$@.tmp \$^
+	\$(AR) -c -r -s \$@.tmp \$^
 	mv \$@.tmp \$@
 
 CPPFLAGS = -I ../../include -D NDEBUG

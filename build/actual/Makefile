@@ -1,6 +1,10 @@
 include ../include/init.mk
 include ../include/name.mk
 
+WORKSPACE := ../..
+
+include ../config/include.mk
+
 SRCS := $(shell sh ../script/get-source.sh)
 OBJS := $(SRCS:.c=.o)
 
@@ -13,14 +17,27 @@ all: $(TARGET)
 
 $(TARGET): $(OBJS)
 	rm -f $@ $@.tmp
-	$(AR) cr $@.tmp $^
+	$(AR) -c -r -s $@.tmp $^
 	mv $@.tmp $@
 
 %.o: ../../src/%.c
 	mkdir -p $$(dirname "$@")
+ifeq ($(CLANG_OR_GCC),1)
+ifeq ($(RELEASE),1)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -DNDEBUG -O3 -c -o $@ $<
+else
+	$(CC) $(CFLAGS) $(CPPFLAGS) -MMD -DDEBUG -g -c -o $@ $<
+endif
+-include $(OBJS:.o=.d)
+else
 	rm -f $@ $@.tmp
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c -o $@.tmp $<
+ifeq ($(RELEASE),1)
+	$(CC) $(CFLAGS) $(CPPFLAGS) -DNDEBUG -O -c -o $@.tmp $<
+else
+	$(CC) $(CFLAGS) $(CPPFLAGS) -DDEBUG -g -c -o $@.tmp $<
+endif
 	mv $@.tmp $@
+endif
 
 .PHONY: clean
 clean:

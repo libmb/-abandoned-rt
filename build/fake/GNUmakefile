@@ -11,11 +11,20 @@ all:
 .PHONY: $(ACTUAL_TARGETS)
 $(ACTUAL_TARGETS):
 	$(MAKE) -C ../actual $@
+
+.PHONY: pre_clean
+clean: pre_clean
+pre_clean:
 	sh ../clean.sh
 
 .PHONY: fclean
 fclean: clean
 	rm -f ../../$(NAME)
+
+.PHONY: re
+re:
+	$(MAKE) fclean
+	$(MAKE) all
 
 .PHONY: test
 test:

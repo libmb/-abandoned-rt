@@ -2,3 +2,5 @@
 /libmb_rt.a
 /compile_commands.json
 /*.tmp
+/out
+/env.mk

@@ -7,3 +7,7 @@ $(NAME): all
 .PHONY: $(TARGETS)
 $(TARGETS):
 	(cd build/fake && $(MAKE) $@)
+
+.PHONY: package
+package:
+	sh build/package.sh
