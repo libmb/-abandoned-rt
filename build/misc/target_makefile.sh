@@ -21,8 +21,8 @@ all: \$(NAME)
 
 CPPFLAGS = -I ../../include -D NDEBUG
 
-" "$(sh build/script/get-source.sh | sed s/\\.c/.o/)"
+" "$(sh build/script/get-source.sh | sed s/\\.c/.o/ | xargs)"
 
 sh build/script/get-source.sh | while IFS= read -r SRC; do
-  printf "%s: %s\n\t\$(CC) \$(CFLAGS) \$(CPPFLAGS) -c -o \$@ \$^\n" "${SRC%.c}.o" "../../src/$SRC"
+  printf "%s: %s\n\tmkdir -p %s\n\t\$(CC) \$(CFLAGS) \$(CPPFLAGS) -c -o \$@ \$^\n" "${SRC%.c}.o" "../../src/$SRC" "$(dirname "$SRC")"
 done

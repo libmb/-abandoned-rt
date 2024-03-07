@@ -15,12 +15,12 @@ TARGET := $(NAME)
 all: $(TARGET)
 .PHONY: all
 
-$(TARGET): $(OBJS)
+$(TARGET): $(addprefix obj/,$(OBJS))
 	rm -f $@ $@.tmp
 	$(AR) -c -r -s $@.tmp $^
 	mv $@.tmp $@
 
-%.o: ../../src/%.c
+obj/%.o: ../../src/%.c
 	mkdir -p $$(dirname "$@")
 ifeq ($(CLANG_OR_GCC),1)
 ifeq ($(RELEASE),1)
