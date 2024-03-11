@@ -6,7 +6,7 @@
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 22:53:41 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/10 22:31:38 by jmaing           ###   ########.fr       */
+/*   Updated: 2024/03/11 23:07:24 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,6 @@
 
 # include "mb_rt_type.h"
 
-t_err					mb_rt_buffer_read_from_file(
-							const char *file_name,
-							t_mb_rt_buffer *out);
 t_err					mb_rt_buffer_merge(
 							size_t count,
 							const t_mb_rt_buffer *buffers,
@@ -34,6 +31,7 @@ void					mb_rt_buffer_builder_delete(
 							t_mb_rt_buffer_builder *self);
 
 t_mb_rt_stack			*mb_rt_stack(void);
+t_mb_rt_stack			*mb_rt_stack_with_count(size_t count);
 
 t_err					mb_rt_stack_ok(t_mb_rt_stack *self);
 t_err					mb_rt_stack_ko(t_mb_rt_stack *self);

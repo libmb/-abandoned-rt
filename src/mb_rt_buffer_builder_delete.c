@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ok.c                                               :+:      :+:    :+:   */
+/*   mb_rt_buffer_builder_delete.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 22:19:55 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/07 22:57:01 by jmaing           ###   ########.fr       */
+/*   Created: 2024/03/07 23:07:59 by jmaing            #+#    #+#             */
+/*   Updated: 2024/03/11 23:16:10 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mb_rt.h"
 
-t_err	mb_rt_stack_ok(t_mb_rt_stack *self)
+#include <stdlib.h>
+
+void	mb_rt_buffer_builder_delete(t_mb_rt_buffer_builder *self)
 {
-	return (self->v->ok(self));
+	free(self->buffer);
+	free(self);
 }

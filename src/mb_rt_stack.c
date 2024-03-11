@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   add.c                                              :+:      :+:    :+:   */
+/*   mb_rt_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 22:27:56 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/07 22:51:07 by jmaing           ###   ########.fr       */
+/*   Created: 2024/03/11 23:03:58 by jmaing            #+#    #+#             */
+/*   Updated: 2024/03/11 23:16:31 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mb_rt.h"
 
-t_err	mb_rt_stack_add(
-	t_mb_rt_stack *self,
-	t_mb_rt_resource *destination,
-	t_mb_rt_resource resource
-)
+t_mb_rt_stack	*mb_rt_stack(void)
 {
-	return (self->v->add(self, destination, resource));
+	return (mb_rt_stack_with_count(10));
 }

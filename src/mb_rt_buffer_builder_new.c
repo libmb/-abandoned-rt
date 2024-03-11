@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mb_rt_stack_ko.c                                   :+:      :+:    :+:   */
+/*   mb_rt_buffer_builder_new.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmaing <jmaing@student.42seoul.kr>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/07 22:26:10 by jmaing            #+#    #+#             */
-/*   Updated: 2024/03/07 22:26:11 by jmaing           ###   ########.fr       */
+/*   Created: 2024/03/07 22:59:52 by jmaing            #+#    #+#             */
+/*   Updated: 2024/03/11 23:16:13 by jmaing           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "mb_rt.h"
 
-t_err	mb_rt_stack_ko(t_mb_rt_stack *self)
+#include <stdlib.h>
+
+t_mb_rt_buffer_builder	*mb_rt_buffer_builder_new(void)
 {
-	return (self->v->ko(self));
+	t_mb_rt_buffer_builder	*result;
+
+	result = malloc(sizeof(t_mb_rt_buffer_builder));
+	if (!result)
+		return (NULL);
+	result->buffer = NULL;
+	result->length = 0;
+	result->capacity = 0;
+	return (result);
 }
